@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.277cb059.css","mappings":"AAAA,KACE,iBACF,CAEA,KACI,QACJ,CACA,OACI,WAAY,CACZ,UACJ","sources":["static/css/CrazyCircles.css"],"sourcesContent":[".App {\r\n  text-align: center;\r\n}\r\n\r\nbody {\r\n    margin: 0;\r\n}\r\ncanvas {\r\n    height: 100%;\r\n    width: 100%;\r\n}"],"names":[],"sourceRoot":""}
