@@ -2,12 +2,14 @@ import { useEffect, useRef } from "react";
 import "../static/css/App.css";
 
 function App() {
-  const numCircle = 500;
-  const maxRadius = 100;
-  const speed = 3;
-  const ref = useRef();
+  const ref = useRef(); // ref to the convas
 
   useEffect(() => {
+    let numCircle = 800;
+    let maxRadius = window.innerWidth / 20;
+    let mouseRadius = window.innerWidth / 40;
+
+    const speed = 3;
     const colorArray = [
       "rgba(16,69,79,",
       "rgba(79,98,102,",
@@ -19,12 +21,26 @@ function App() {
       x: undefined,
       y: undefined,
     };
+
+    //   convase size as big as the browser
+    ref.current.width = window.innerWidth;
+    ref.current.height = window.innerHeight;
+
+    // register the mouse coordinates
     window.addEventListener("mousemove", (event) => {
       mouse.x = event.x;
       mouse.y = event.y;
     });
-    ref.current.width = window.innerWidth;
-    ref.current.height = window.innerHeight;
+
+    // resize the convas
+    window.addEventListener("resize", (event) => {
+      ref.current.width = window.innerWidth;
+      ref.current.height = window.innerHeight;
+      maxRadius = window.innerWidth / 10;
+      mouseRadius = window.innerWidth / 10;
+
+      init(numCircle);
+    });
     const c = ref.current.getContext("2d");
 
     class Circle {
@@ -45,6 +61,7 @@ function App() {
         c.beginPath();
         //   create the circle
         c.arc(this.x, this.y, this.radius, 0, 2 * Math.PI, false);
+
         // c.strokeStyle = "rgba(0,0,250,0.9)";
         // c.stroke();
         c.fillStyle = this.color;
@@ -69,27 +86,32 @@ function App() {
         }
         //mouse interactive
         if (
-          Math.abs(this.x - mouse.x) < 50 &&
-          Math.abs(this.y - mouse.y) < 50
+          Math.abs(this.x - mouse.x) < mouseRadius &&
+          Math.abs(this.y - mouse.y) < mouseRadius
         ) {
           if (this.radius < maxRadius) {
             this.radius += 1;
           }
-        } else if (this.radius > 0.1 * maxRadius) {
+        } else if (this.radius > 0.1 * maxRadius && this.radius > 5) {
           this.radius -= 1;
         }
       }
     }
 
     let circleArray = [];
-    for (let i = 0; i < numCircle; i++) {
-      let x = Math.random() * (window.innerWidth - 2 * maxRadius) + maxRadius;
-      let y = Math.random() * (window.innerHeight - 2 * maxRadius) + maxRadius;
 
-      //   randomize velocity
-      let dx = (Math.random() - 0.5) * speed;
-      let dy = (Math.random() - 0.5) * speed;
-      circleArray.push(new Circle(x, y, dx, dy));
+    function init(numCircle) {
+      circleArray = [];
+      for (let i = 0; i < numCircle; i++) {
+        let x = Math.random() * (window.innerWidth - 2 * maxRadius) + maxRadius;
+        let y =
+          Math.random() * (window.innerHeight - 2 * maxRadius) + maxRadius;
+
+        //   randomize velocity
+        let dx = (Math.random() - 0.5) * speed;
+        let dy = (Math.random() - 0.5) * speed;
+        circleArray.push(new Circle(x, y, dx, dy));
+      }
     }
 
     function animate() {
@@ -97,11 +119,15 @@ function App() {
 
       //   start from a clean frame
       c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
       for (let i = 0; i < circleArray.length; i++) {
         circleArray[i].update();
       }
     }
+
+    // call the functions
     animate();
+    init(numCircle);
   }, []);
   return (
     <div className="App">
