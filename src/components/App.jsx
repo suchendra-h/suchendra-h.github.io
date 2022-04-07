@@ -2,18 +2,19 @@ import { useEffect, useRef } from "react";
 import "../static/css/App.css";
 
 function App() {
-  const numCircle = 700;
+  const numCircle = 500;
   const maxRadius = 100;
   const speed = 3;
   const ref = useRef();
-  const colorArray = [
-    "rgba(16,69,79,",
-    "rgba(79,98,102,",
-    "rgba(128,130,116,",
-    "rgba(163,170,119,",
-    "rgba(189,224,55,",
-  ];
+
   useEffect(() => {
+    const colorArray = [
+      "rgba(16,69,79,",
+      "rgba(79,98,102,",
+      "rgba(128,130,116,",
+      "rgba(163,170,119,",
+      "rgba(189,224,55,",
+    ];
     let mouse = {
       x: undefined,
       y: undefined,
