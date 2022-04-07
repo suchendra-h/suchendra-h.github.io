@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
-import "../static/css/App.css";
+import "../static/css/CrazyCircles.css";
 
-function App() {
+function CrazyCircles() {
   const ref = useRef(); // ref to the convas
 
   useEffect(() => {
@@ -117,8 +117,12 @@ function App() {
     function animate() {
       requestAnimationFrame(animate);
 
-      //   start from a clean frame
+      // start from a clean frame
       c.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+      // uncomment for another cool effect
+      //   c.fillStyle = "rgba(255,255,255,0.001)";
+      //   c.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
       for (let i = 0; i < circleArray.length; i++) {
         circleArray[i].update();
@@ -130,10 +134,10 @@ function App() {
     init(numCircle);
   }, []);
   return (
-    <div className="App">
+    <div className="CrazyCircles">
       <canvas ref={ref}></canvas>
     </div>
   );
 }
 
-export default App;
+export default CrazyCircles;
