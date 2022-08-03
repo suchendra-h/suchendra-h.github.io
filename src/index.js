@@ -6,6 +6,7 @@ import App from "./components/App";
 
 // Importing the Bootstrap CSS
 import "bootstrap/dist/css/bootstrap.min.css";
+<script>console.log('hellos');</script>;
 
 ReactDOM.render(
   <React.StrictMode>

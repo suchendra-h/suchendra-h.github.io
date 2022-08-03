@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CrazyCircles from "./backgrounds/CrazyCircles";
 import Navigation from "./navbar/Navbar";
+import Mainpage from "./pages/Mainpage";
 
 function App(props) {
   const [background, setBackground] = useState("");
@@ -13,7 +14,7 @@ function App(props) {
   return (
     <>
       <Navigation setBackground={setBackground}></Navigation>
-
+      <Mainpage />
       {tmp}
     </>
   );
