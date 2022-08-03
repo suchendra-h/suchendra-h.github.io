@@ -2,11 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
-import CrazyCircles from "./components/CrazyCircles";
+import App from "./components/App";
+
+// Importing the Bootstrap CSS
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <CrazyCircles />
+    <App></App>
   </React.StrictMode>,
   document.getElementById("root")
 );
