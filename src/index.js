@@ -5,8 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import App from "./components/App";
 
 // Importing the Bootstrap CSS
-import "bootstrap/dist/css/bootstrap.min.css";
-<script>console.log('hellos');</script>;
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
   <React.StrictMode>

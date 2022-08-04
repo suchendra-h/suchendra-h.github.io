@@ -1,40 +1,85 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+/* This example requires Tailwind CSS v2.0+ */
+import { useState } from "react";
+import NavbarSwitch from "./navbarswitch";
+import { PuzzleIcon } from "@heroicons/react/solid";
 
-function Navigation(props) {
+function MyNavbar(props) {
+  const tabs = [
+    { label: "Home", href: "home" },
+    { label: "Projects", href: "projects" },
+    { label: "Contact Me", ref: "home" },
+  ];
   return (
-    <Navbar bg="light" expand="lg" className="navbar navbar-dark bg-dark">
-      <Container>
-        <Navbar.Brand href="#home">Milad Hassani</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <NavDropdown title="Samples" id="basic-nav-dropdown">
-              <NavDropdown.Item
-                onClick={() => props.setBackground("crazy_circles")}
-              >
-                Crazy Circles
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item
-                href="#action/3.4"
-                onClick={() => props.setBackground("")}
-              >
-                Separated link
-              </NavDropdown.Item>
-            </NavDropdown>
-            <Nav.Link href="#link">Contact Me</Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+    <>
+      {/* <!-- navbar goes here --> */}
+      <nav className="bg-gray-100">
+        <div className="max-w-6xl h-[80px] mx-auto px-4">
+          <div className="flex justify-between">
+            <div className="flex space-x-9">
+              {/* <!-- logo --> */}
+              <div>
+                <a
+                  href="/"
+                  className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900"
+                >
+                  <PuzzleIcon className="fill-amber-700" />
+                  <span className="block font-bold ml-5">Milad Hassani</span>
+                </a>
+              </div>
+
+              {/* <!-- primary nav --> */}
+
+              <div className="hidden md:flex items-center space-x-1">
+                {tabs.map((tab) => (
+                  <a
+                    href={`/${tab.href}`}
+                    className="py-5 px-3 text-gray-700 hover:text-gray-900"
+                    key={`${tab.href}`}
+                  >
+                    {tab.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* <!-- secondary nav --> */}
+            <div className="hidden md:flex items-center space-x-1">
+              <NavbarSwitch className="shadow-2xl" />
+            </div>
+
+            {/* <!-- mobile button goes here --> */}
+            <div className="md:hidden flex items-center">
+              <button className="mobile-menu-button">
+                <svg
+                  className="w-6 h-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* <!-- mobile menu --> */}
+        <div className="mobile-menu hidden md:hidden">
+          <a href="#" className="block py-2 px-4 text-sm hover:bg-gray-200">
+            Features
+          </a>
+          <a href="#" className="block py-2 px-4 text-sm hover:bg-gray-200">
+            Pricing
+          </a>
+        </div>
+      </nav>
+    </>
   );
 }
-export default Navigation;
+export default MyNavbar;
