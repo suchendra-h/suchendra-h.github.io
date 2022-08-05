@@ -5,6 +5,7 @@ import Mainpage from "./pages/Mainpage";
 
 function App(props) {
   const [background, setBackground] = useState("");
+  const [darkMode, setDarkMode] = useState(true);
   let tmp;
   if (background === "crazy_circles") {
     tmp = <CrazyCircles></CrazyCircles>;
@@ -12,11 +13,14 @@ function App(props) {
     tmp = "";
   }
   return (
-    <>
-      <MyNavbar setBackground={setBackground}></MyNavbar>
+    <div className={darkMode ? "dark" : ""}>
+      <MyNavbar
+        setBackground={setBackground}
+        setDarkMode={setDarkMode}
+      ></MyNavbar>
       <Mainpage />
       {tmp}
-    </>
+    </div>
   );
 }
 

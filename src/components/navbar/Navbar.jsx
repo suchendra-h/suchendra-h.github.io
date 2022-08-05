@@ -1,39 +1,41 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { useState } from "react";
-import NavbarSwitch from "./navbarswitch";
+import NavbarDarkSwitch from "./navbardarkswitch";
 import { PuzzleIcon } from "@heroicons/react/solid";
 
 function MyNavbar(props) {
   const tabs = [
     { label: "Home", href: "home" },
     { label: "Projects", href: "projects" },
-    { label: "Contact Me", ref: "home" },
+    { label: "Contact Me", href: "contact" },
   ];
   return (
     <>
       {/* <!-- navbar goes here --> */}
-      <nav className="bg-gray-100">
-        <div className="max-w-6xl h-[80px] mx-auto px-4">
-          <div className="flex justify-between">
-            <div className="flex space-x-9">
+      <nav className="bg-slate-200 dark:bg-slate-900">
+        <div className="max-w-6xl h-[55px] mx-auto px-4">
+          <div className="flex h-[55px] items-center justify-between">
+            <div className="flex space-x-0">
               {/* <!-- logo --> */}
               <div>
                 <a
                   href="/"
-                  className="flex items-center py-5 px-2 text-gray-700 hover:text-gray-900"
+                  className="grid grid-cols-4 gap-2 place-content-center w-60 py-5 px-2 text-gray-700 hover:text-gray-900"
                 >
-                  <PuzzleIcon className="fill-amber-700" />
-                  <span className="block font-bold ml-5">Milad Hassani</span>
+                  <PuzzleIcon className="fill-amber-700 justify-self-end dark:fill-orange-300 py-3 h-12" />
+                  <span className="whitespace-nowrap col-auto justify-self-start my-auto font-bold  dark:text-slate-50 ">
+                    Milad Hassani
+                  </span>
                 </a>
               </div>
 
               {/* <!-- primary nav --> */}
 
-              <div className="hidden md:flex items-center space-x-1">
+              <div className="hidden md:flex items-center justify-start ">
                 {tabs.map((tab) => (
                   <a
                     href={`/${tab.href}`}
-                    className="py-5 px-3 text-gray-700 hover:text-gray-900"
+                    className="py-5 px-3 text-gray-700 hover:text-gray-900 dark:text-sky-200 dark:hover:text-sky-400"
                     key={`${tab.href}`}
                   >
                     {tab.label}
@@ -44,7 +46,10 @@ function MyNavbar(props) {
 
             {/* <!-- secondary nav --> */}
             <div className="hidden md:flex items-center space-x-1">
-              <NavbarSwitch className="shadow-2xl" />
+              <NavbarDarkSwitch
+                className="shadow-2xl dark:"
+                setDarkMode={props.setDarkMode}
+              />
             </div>
 
             {/* <!-- mobile button goes here --> */}
