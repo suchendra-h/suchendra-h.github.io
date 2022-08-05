@@ -12,7 +12,7 @@ function MyNavbar(props) {
   return (
     <>
       {/* <!-- navbar goes here --> */}
-      <nav className="bg-slate-200 dark:bg-slate-900">
+      <nav className="bg-slate-400 dark:bg-slate-900">
         <div className="max-w-6xl h-[55px] mx-auto px-4">
           <div className="flex h-[55px] items-center justify-between">
             <div className="flex space-x-0">
@@ -49,6 +49,7 @@ function MyNavbar(props) {
               <NavbarDarkSwitch
                 className="shadow-2xl dark:"
                 setDarkMode={props.setDarkMode}
+                darkMode={props.darkMode}
               />
             </div>
 

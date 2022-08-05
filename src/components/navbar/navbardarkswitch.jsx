@@ -3,7 +3,7 @@ import { Switch } from "@headlessui/react";
 import { MoonIcon, SunIcon } from "@heroicons/react/solid";
 
 function NavbarDarkSwitch(props) {
-  const [enabled, setEnabled] = useState(false);
+  const [enabled, setEnabled] = useState(props.darkMode ?? false);
 
   useEffect(() => {
     if (props.setDarkMode) {

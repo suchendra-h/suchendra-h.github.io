@@ -17,6 +17,7 @@ function App(props) {
       <MyNavbar
         setBackground={setBackground}
         setDarkMode={setDarkMode}
+        darkMode={darkMode}
       ></MyNavbar>
       <Mainpage />
       {tmp}
