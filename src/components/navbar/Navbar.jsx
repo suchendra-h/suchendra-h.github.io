@@ -13,7 +13,7 @@ function MyNavbar(props) {
   return (
     <>
       {/* <!-- navbar goes here --> */}
-      <nav className="bg-slate-200 dark:bg-slate-900 shadow-md shadow-slate-300 dark:shadow-slate-900">
+      <nav className="bg-gray-200 dark:bg-slate-900 shadow-md shadow-slate-300 dark:shadow-slate-900">
         <div className="flex max-w-6xl h-[45px] items-center justify-between mx-auto px-4 drop-shadow-2xl">
           <div className="flex space-x-0">
             {/* <!-- logo --> */}
