@@ -141,7 +141,6 @@ function Mainpage(params) {
           ))}
         </Tab.Panels>
       </Tab.Group>
-      <Signature />
     </div>
   );
 }

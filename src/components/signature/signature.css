@@ -1,5 +1,5 @@
 #signature {
-    filter: drop-shadow(0 0 0.75rem gray);
+    filter: drop-shadow(0 0 0.75rem #e0f2fe);
     stroke-dasharray: 1719;
     stroke-dashoffset: 1719;
     animation: sign 2.5s ease-in-out;
