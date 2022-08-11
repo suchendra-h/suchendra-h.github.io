@@ -14,7 +14,7 @@ function App(props) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 3001);
   }, []);
 
   if (background === "crazy_circles") {
