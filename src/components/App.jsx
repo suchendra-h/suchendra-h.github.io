@@ -13,7 +13,7 @@ function App(props) {
     tmp = "";
   }
   return (
-    <div className={darkMode ? "dark" : ""}>
+    <div className={darkMode ? "dark app" : "app"}>
       <MyNavbar
         setBackground={setBackground}
         setDarkMode={setDarkMode}

@@ -1,6 +1,7 @@
 /* This example requires Tailwind CSS v2.0+ */
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
+import Signature from "../signature/signature";
 const tabText = ["About", "Projects", "Contact"];
 
 function MyTab(props) {
@@ -140,6 +141,7 @@ function Mainpage(params) {
           ))}
         </Tab.Panels>
       </Tab.Group>
+      <Signature />
     </div>
   );
 }

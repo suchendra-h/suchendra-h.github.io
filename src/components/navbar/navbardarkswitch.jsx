@@ -11,22 +11,36 @@ function NavbarDarkSwitch(props) {
     }
   }, [enabled, props]);
 
+  const sizes = {
+    large: { bgHeight: "60px", bgWidth: "100px", knbDiameter: "52px" },
+    medium: { bgHeight: "26px", bgWidth: "43px", knbDiameter: "26px" },
+    small: { bgHeight: "16px", bgWidth: "23px", knbDiameter: "16px" },
+  };
+
+  function classNames(...classes) {
+    return classes.filter(Boolean).join(" ");
+  }
+
   return (
     <>
       <Switch
         checked={enabled}
         onChange={setEnabled}
-        className={`${enabled ? "bg-amber-100" : "bg-slate-500"}
-          relative inline-flex items-center h-[26px] w-[43px] shrink-0 cursor-pointer shadow-inner rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+        className={classNames(
+          `${enabled ? "bg-amber-100" : "bg-slate-500"}
+          relative inline-flex items-center w-[43px] h-[26px] shrink-0 cursor-pointer shadow-inner rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`
+        )}
       >
         <span className="sr-only">Use setting</span>
         <div
-          className={`${
-            enabled
-              ? "translate-x-[1em] bg-slate-900 opacity-100"
-              : "translate-x-0 bg-slate-50"
-          }
-            pointer-events-none  h-[1.5em] w-[1.5em] transform rounded-full shadow-lg ring-0 transition[all] duration-200 ease-in-out`}
+          className={classNames(
+            `${
+              enabled
+                ? "translate-x-[14px] bg-slate-900 opacity-100"
+                : "translate-x-0 bg-slate-50"
+            }
+            pointer-events-none transform rounded-full shadow-lg ring-0 transition[all] duration-200 ease-in-out h-[26px] w-[26px]`
+          )}
         >
           {enabled ? (
             <SunIcon className="fill-yellow-600" />
