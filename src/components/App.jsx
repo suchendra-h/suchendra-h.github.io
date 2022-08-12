@@ -39,7 +39,7 @@ function App(props) {
             setDarkMode={setDarkMode}
             darkMode={darkMode}
           ></MyNavbar>
-          <Mainpage />
+          {/* <Mainpage /> */}
           {bg_component}
         </motion.div>
       )}

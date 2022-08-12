@@ -3,6 +3,7 @@ import { useState } from "react";
 import NavbarDarkSwitch from "./navbardarkswitch";
 import { PuzzleIcon } from "@heroicons/react/solid";
 import Signature from "../signature/signature";
+import NameBrand from "../name/name";
 
 function MyNavbar(props) {
   const tabs = [
@@ -15,16 +16,16 @@ function MyNavbar(props) {
       {/* <!-- navbar goes here --> */}
       <nav className="bg-gray-200 dark:bg-slate-900 shadow-md shadow-slate-300 dark:shadow-slate-900">
         <div className="flex max-w-6xl h-[45px] items-center justify-between mx-auto px-4 drop-shadow-2xl">
-          <div className="flex space-x-0">
+          <div className="flex grow space-x-0">
             {/* <!-- logo --> */}
-            <div>
+            <div className="flex grow">
               <a
                 href="/"
                 className="grid grid-cols-4 gap-2 place-content-center w-60 py-5 px-2 text-gray-700 hover:text-gray-900"
               >
                 <PuzzleIcon className="fill-amber-700 justify-self-end dark:fill-orange-300 py-3 h-12" />
-                <span className="whitespace-nowrap col-auto justify-self-start my-auto font-bold  dark:text-slate-50 ">
-                  Milad Hassani
+                <span className="whitespace-nowrap object-none col-auto justify-self-start my-auto font-bold  dark:text-slate-50 ">
+                  <NameBrand />
                 </span>
               </a>
             </div>
