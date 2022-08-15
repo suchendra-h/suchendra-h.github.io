@@ -20,7 +20,7 @@ function NameBrand() {
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 100 100"
-        className="item stroke-slate-700 dark:drop-shadow-[0_0_0.75rem_rgba(224,242,254,1)] dark:stroke-stone-200 "
+        className="item stroke-slate-600 dark:drop-shadow-[0_0_0.75rem_rgba(224,242,254,1)] dark:stroke-stone-200 "
       >
         <motion.path
           d={svg_d}

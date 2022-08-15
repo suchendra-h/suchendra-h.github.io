@@ -24,6 +24,7 @@ function App(props) {
     bg_component = "";
   }
   return (
+    // TODO change darkMode to a context so we don't pass as props to every component
     <div className={darkMode ? "dark app" : "app"}>
       {loading ? (
         <Signature />
@@ -39,7 +40,7 @@ function App(props) {
             setDarkMode={setDarkMode}
             darkMode={darkMode}
           ></MyNavbar>
-          {/* <Mainpage /> */}
+          <Mainpage darkMode={darkMode} />
           {bg_component}
         </motion.div>
       )}

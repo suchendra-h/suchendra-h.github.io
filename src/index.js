@@ -3,13 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import App from "./components/App";
-
-// Importing the Bootstrap CSS
-// import "bootstrap/dist/css/bootstrap.min.css";
+import { StyledEngineProvider } from "@mui/material";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App></App>
+    {/* Inject MUI components styles first, tailwind later so I can use tailwind css inline styles */}
+    <StyledEngineProvider injectFirst>
+      <App></App>
+    </StyledEngineProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );
