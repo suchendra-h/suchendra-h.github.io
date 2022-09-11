@@ -5,18 +5,19 @@ import MyNavbar from "./navbar/Navbar";
 import Mainpage from "./pages/Mainpage";
 import Signature from "./signature/signature";
 import { motion } from "framer-motion";
+import MusicGlobe from "./pages/MusicGlobe";
 
 function App(props) {
   const [background, setBackground] = useState("");
   const [darkMode, setDarkMode] = useState(true);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   let bg_component;
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3001);
-  }, []);
+  //   useEffect(() => {
+  //     setTimeout(() => {
+  //       setLoading(false);
+  //     }, 3001);
+  //   }, []);
 
   if (background === "crazy_circles") {
     bg_component = <CrazyCircles></CrazyCircles>;
@@ -40,7 +41,8 @@ function App(props) {
             setDarkMode={setDarkMode}
             darkMode={darkMode}
           ></MyNavbar>
-          <Mainpage darkMode={darkMode} />
+          <MusicGlobe />
+          {/* <Mainpage darkMode={darkMode} /> */}
           {bg_component}
         </motion.div>
       )}
