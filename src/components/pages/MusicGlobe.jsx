@@ -10,14 +10,12 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
-import { typography } from "@mui/system";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
 
 function PolygonLabel({ properties: d }) {
   let lbl = (
@@ -73,58 +71,34 @@ function MusicGlobe() {
           <>
             <Typography variant="h5">{clickD.properties.ADMIN} </Typography>
             {songsData ? (
-              <TableContainer component={Paper}>
-                <Table
-                  sx={{ minWidth: 400 }}
-                  className="overflow-x-auto text-ellipsis overflow-hidden"
-                  size="small"
-                  padding="none"
-                  aria-label="Top hits"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell
-                        align="left"
-                        size="small"
-                        className="w-16 text-ellipsis overflow-hidden"
-                      >
-                        Song Name
-                      </TableCell>
-                      <TableCell align="left" size="small" className="w-12">
-                        Artist
-                      </TableCell>
-                      <TableCell align="left" size="small" className="w-10">
-                        Listeners
-                      </TableCell>
-                      <TableCell align="left">Link</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {/* songs data needs to be sorted */}
-                    {songsData.map((row) => (
-                      <TableRow
-                        key={row.name}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                        className="p-0"
-                      >
-                        <TableCell
-                          scope="row"
-                          className="text-ellipsis overflow-hidden"
-                        >
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="left">{row.artist.name}</TableCell>
-                        <TableCell align="left">{row.listeners}</TableCell>
-                        <TableCell align="left">
-                          <a href={`${row.url}`}>LastFM</a>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
+              <List
+                dense
+                sx={{
+                  width: "100%",
+                  maxWidth: 360,
+                  bgcolor: "background.paper",
+                }}
+              >
+                {songsData.map((value) => {
+                  const labelId = `checkbox-list-secondary-label-${value}`;
+                  return (
+                    <ListItem key={value} disablePadding>
+                      <ListItemButton>
+                        <ListItemAvatar>
+                          <Avatar
+                            alt={`Avatar n°${value + 1}`}
+                            src={`/static/images/avatar/${value + 1}.jpg`}
+                          />
+                        </ListItemAvatar>
+                        <ListItemText
+                          id={labelId}
+                          primary={`${value.name} | ${value.listeners}`}
+                        />
+                      </ListItemButton>
+                    </ListItem>
+                  );
+                })}
+              </List>
             ) : (
               <Typography variant="h5">
                 {"Could not find the songs' information for this country"}
