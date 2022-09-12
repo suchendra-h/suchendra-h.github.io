@@ -21,14 +21,9 @@ import { typography } from "@mui/system";
 
 function PolygonLabel({ properties: d }) {
   let lbl = (
-    <p className="text-slate-100 bg-gray-700 bg-opacity-60 rounded-sm p-1">{`${d.ADMIN} (${d.ISO_A2})`}</p>
+    <p className="text-slate-100 bg-gray-700 bg-opacity-60 rounded-sm p-1 left-0">{`${d.ADMIN} (${d.ISO_A2})`}</p>
   );
   return ReactDOMServer.renderToStaticMarkup(lbl);
-}
-
-function SongsTable(props) {
-  if (props.data) {
-  }
 }
 
 function MusicGlobe() {
@@ -70,17 +65,7 @@ function MusicGlobe() {
   // ===================
   // music card contents
   // ===================
-  function createData(name, calories, fat, carbs, protein) {
-    return { name, calories, fat, carbs, protein };
-  }
 
-  const rows = [
-    createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-    createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-    createData("Eclair", 262, 16.0, 24, 6.0),
-    createData("Cupcake", 305, 3.7, 67, 4.3),
-    createData("Gingerbread", 356, 16.0, 49, 3.9),
-  ];
   const card = (
     <React.Fragment>
       <CardContent>
@@ -90,33 +75,50 @@ function MusicGlobe() {
             {songsData ? (
               <TableContainer component={Paper}>
                 <Table
-                  sx={{ minWidth: 650 }}
+                  sx={{ minWidth: 400 }}
+                  className="overflow-x-auto text-ellipsis overflow-hidden"
                   size="small"
-                  aria-label="a dense table"
+                  padding="none"
+                  aria-label="Top hits"
                 >
                   <TableHead>
                     <TableRow>
-                      <TableCell>Song Name</TableCell>
-                      <TableCell align="right">Artist</TableCell>
-                      <TableCell align="right">Listeners</TableCell>
-                      <TableCell align="right">Link</TableCell>
+                      <TableCell
+                        align="left"
+                        size="small"
+                        className="w-16 text-ellipsis overflow-hidden"
+                      >
+                        Song Name
+                      </TableCell>
+                      <TableCell align="left" size="small" className="w-12">
+                        Artist
+                      </TableCell>
+                      <TableCell align="left" size="small" className="w-10">
+                        Listeners
+                      </TableCell>
+                      <TableCell align="left">Link</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
+                    {/* songs data needs to be sorted */}
                     {songsData.map((row) => (
                       <TableRow
                         key={row.name}
                         sx={{
                           "&:last-child td, &:last-child th": { border: 0 },
                         }}
+                        className="p-0"
                       >
-                        <TableCell component="th" scope="row">
+                        <TableCell
+                          scope="row"
+                          className="text-ellipsis overflow-hidden"
+                        >
                           {row.name}
                         </TableCell>
-                        <TableCell align="right">{row.artist.name}</TableCell>
-                        <TableCell align="right">{row.listeners}</TableCell>
-                        <TableCell align="right">
-                          <a href={`${row.url}`}>{row.url}</a>
+                        <TableCell align="left">{row.artist.name}</TableCell>
+                        <TableCell align="left">{row.listeners}</TableCell>
+                        <TableCell align="left">
+                          <a href={`${row.url}`}>LastFM</a>
                         </TableCell>
                       </TableRow>
                     ))}
@@ -144,11 +146,14 @@ function MusicGlobe() {
   );
   return (
     <>
-      <Card className="bg-slate-100 bg-opacity-50 z-10" variant="outlined">
+      <Card
+        className="bg-slate-100 bg-opacity-50 z-10 absolute top-12 right-0 w-[400px]"
+        variant="outlined"
+      >
         {card}
       </Card>
       <Globe
-        className="z-0"
+        className="z-0 absolute left-0"
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
         backgroundImageUrl="//unpkg.com/three-globe/example/img/night-sky.png"
         lineHoverPrecision={0}
