@@ -16,6 +16,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
+import Drawer from "@mui/material/Drawer";
 
 function PolygonLabel({ properties: d }) {
   let lbl = (
@@ -29,6 +30,7 @@ function MusicGlobe() {
   const [hoverD, setHoverD] = useState();
   const [clickD, setClickD] = useState();
   const [songsData, setSongsData] = useState();
+  const [drawer, setDrawer] = useState(true);
 
   useEffect(() => {
     // load data
@@ -46,9 +48,11 @@ function MusicGlobe() {
     [countries]
   );
   colorScale.domain([0, maxVal]);
+
   // what happens when a country is clicked
   function handleClick(d) {
     setClickD(d);
+    setDrawer(true);
     let aKey = process.env.REACT_APP_LASTFM_API_KEY;
     let url = `http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=${d.properties.BRK_NAME}&api_key=${aKey}&format=json&limit=10`;
 
@@ -56,21 +60,38 @@ function MusicGlobe() {
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        data.message ? setSongsData(null) : setSongsData(data.tracks.track);
+        data.message
+          ? setSongsData(null)
+          : setSongsData(
+              // Sort and save the data in the songsData state
+              data.tracks.track.sort((a, b) => b.listeners - a.listeners)
+            );
       });
-    console.log(songsData);
+
+    // console.log(songsData);
   }
+
   // ===================
   // music card contents
   // ===================
+  const toggleDrawer = (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
 
-  const card = (
+    setDrawer(false);
+  };
+
+  const drawer_contents = (
     <React.Fragment>
-      <CardContent>
-        {clickD ? (
-          <>
-            <Typography variant="h5">{clickD.properties.ADMIN} </Typography>
-            {songsData ? (
+      {clickD ? (
+        <>
+          <Typography variant="h5">{clickD.properties.ADMIN} </Typography>
+          {songsData ? (
+            <Drawer anchor="left" open={drawer} onClose={toggleDrawer}>
               <List
                 dense
                 sx={{
@@ -79,53 +100,49 @@ function MusicGlobe() {
                   bgcolor: "background.paper",
                 }}
               >
-                {songsData.map((value) => {
-                  const labelId = `checkbox-list-secondary-label-${value}`;
+                {songsData.map((song) => {
+                  const labelId = `checkbox-list-secondary-label-${song}`;
                   return (
-                    <ListItem key={value} disablePadding>
+                    <ListItem key={song.name} disablePadding>
                       <ListItemButton>
                         <ListItemAvatar>
                           <Avatar
-                            alt={`Avatar n°${value + 1}`}
-                            src={`/static/images/avatar/${value + 1}.jpg`}
+                            alt={`Avatar n°${song + 1}`}
+                            src={`${song.image[1]["#text"]}`}
                           />
                         </ListItemAvatar>
                         <ListItemText
                           id={labelId}
-                          primary={`${value.name} | ${value.listeners}`}
+                          primary={`${song.name} | ${song.listeners}`}
                         />
                       </ListItemButton>
                     </ListItem>
                   );
                 })}
               </List>
-            ) : (
-              <Typography variant="h5">
-                {"Could not find the songs' information for this country"}
-              </Typography>
-            )}
-          </>
-        ) : (
-          <Typography variant="h5">
-            {"I will show trending music in every country, just select one!"}
-          </Typography>
-        )}
-      </CardContent>
-      <CardActions>
-        <Button size="small" variant="contained">
-          Listen on Spotify
-        </Button>
-      </CardActions>
+            </Drawer>
+          ) : (
+            <Typography variant="h5">
+              {"Could not find the songs' information for this country"}
+            </Typography>
+          )}
+        </>
+      ) : (
+        <Typography variant="h5">
+          {"I will show trending music in every country, just select one!"}
+        </Typography>
+      )}
     </React.Fragment>
   );
   return (
     <>
       <Card
-        className="bg-slate-100 bg-opacity-50 z-10 absolute top-12 right-0 w-[400px]"
+        className="bg-slate-100 bg-opacity-50 z-10 absolute top-12 right-0 w-[400px] "
         variant="outlined"
       >
-        {card}
+        {/* {card} */}
       </Card>
+      {drawer_contents}
       <Globe
         className="z-0 absolute left-0"
         globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
