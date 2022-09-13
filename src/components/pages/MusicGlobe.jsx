@@ -88,10 +88,13 @@ function MusicGlobe() {
   const drawer_contents = (
     <React.Fragment>
       {clickD ? (
-        <>
-          <Typography variant="h5">{clickD.properties.ADMIN} </Typography>
+        <Drawer anchor="left" open={drawer} onClose={toggleDrawer}>
           {songsData ? (
-            <Drawer anchor="left" open={drawer} onClose={toggleDrawer}>
+            <>
+              <Typography variant="h5" className="text-center">
+                {clickD.properties.ADMIN}
+                {/* {"'s Top Songs"} */}
+              </Typography>
               <List
                 dense
                 sx={{
@@ -120,13 +123,13 @@ function MusicGlobe() {
                   );
                 })}
               </List>
-            </Drawer>
+            </>
           ) : (
             <Typography variant="h5">
               {"Could not find the songs' information for this country"}
             </Typography>
           )}
-        </>
+        </Drawer>
       ) : (
         <Typography variant="h5">
           {"I will show trending music in every country, just select one!"}
@@ -136,10 +139,7 @@ function MusicGlobe() {
   );
   return (
     <>
-      <Card
-        className="bg-slate-100 bg-opacity-50 z-10 absolute top-12 right-0 w-[400px] "
-        variant="outlined"
-      >
+      <Card className="absolute top-12 right-0 w-[400px] " variant="outlined">
         {/* {card} */}
       </Card>
       {drawer_contents}
