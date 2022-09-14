@@ -5,7 +5,6 @@ import MyNavbar from "./navbar/Navbar";
 import Mainpage from "./pages/Mainpage";
 import Signature from "./signature/signature";
 import { motion } from "framer-motion";
-import MusicGlobe from "./pages/MusicGlobe";
 
 function App(props) {
   const [background, setBackground] = useState("");
@@ -41,8 +40,7 @@ function App(props) {
             setDarkMode={setDarkMode}
             darkMode={darkMode}
           ></MyNavbar>
-          <MusicGlobe />
-          {/* <Mainpage darkMode={darkMode} /> */}
+          <Mainpage darkMode={darkMode} />
           {bg_component}
         </motion.div>
       )}
